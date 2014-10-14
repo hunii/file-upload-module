@@ -119,6 +119,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Upload.mdf" />
+    <Content Include="App_Data\Upload_log.ldf">
+      <DependentUpon>Upload.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -162,6 +166,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\File_Uploads\" />
+    <Folder Include="App_Data\Queries\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
