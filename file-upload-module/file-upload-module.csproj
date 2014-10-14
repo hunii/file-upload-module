@@ -39,10 +39,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -115,13 +123,31 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\FileLocation.cs">
+      <DependentUpon>LocationModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LocationModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LocationModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LocationModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LocationModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LocationModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LocationModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\ViewModels\UploadViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Upload.mdf" />
-    <Content Include="App_Data\Upload_log.ldf">
-      <DependentUpon>Upload.mdf</DependentUpon>
+    <Content Include="App_Data\LocationDB.mdf" />
+    <Content Include="App_Data\LocationDB_log.ldf">
+      <DependentUpon>LocationDB.mdf</DependentUpon>
     </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -136,6 +162,23 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <EntityDeploy Include="Models\LocationModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>LocationModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\LocationModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LocationModel.edmx</DependentUpon>
+      <LastGenOutput>LocationModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\LocationModel.edmx.diagram">
+      <DependentUpon>LocationModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\LocationModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LocationModel.edmx</DependentUpon>
+      <LastGenOutput>LocationModel.cs</LastGenOutput>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -171,6 +214,9 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

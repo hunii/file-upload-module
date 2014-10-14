@@ -1,4 +1,5 @@
-﻿using file_upload_module.Models.ViewModels;
+﻿using file_upload_module.Models;
+using file_upload_module.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,6 +11,7 @@ namespace file_upload_module.Controllers
 {
     public class HomeController : Controller
     {
+
         public ActionResult Index()
         {
             return View();
@@ -31,6 +33,17 @@ namespace file_upload_module.Controllers
                         var fileName = Path.GetFileName(uploadFile.FileName);
                         var path = Path.Combine(Server.MapPath("~/App_Data/File_Uploads"), fileName);
                         uploadFile.SaveAs(path);
+
+                        // Create FileLocation model database
+                        FileLocation newLocation = new FileLocation();
+                        newLocation.LocationString = "~/App_Data/File_Uploads/" + uploadFile.FileName;
+
+                        // Add model object to database
+                        using (var db = new LocationDBEntities())
+                        {
+                            db.FileLocations.Add(newLocation);
+                            db.SaveChanges();
+                        }
                     }
 
                     ViewBag.Message = "File Upload Successful";
